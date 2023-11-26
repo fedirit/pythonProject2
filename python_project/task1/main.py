@@ -33,7 +33,6 @@ class Mentor:
             return 'Ошибка'
 
 class Lecturer(Mentor)
-
     def __init__(self, name, surname, gender):
         self.name = name
         self.surname = surname
@@ -43,7 +42,6 @@ class Lecturer(Mentor)
         self.grades = {}
 
 class Reviewer(Mentor)
-
     def __init__(self, name, surname, gender):
         self.name = name
         self.surname = surname
