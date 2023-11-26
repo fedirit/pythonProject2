@@ -58,6 +58,7 @@ class Reviewer(Mentor):
             return 'Ошибка'
 
 
+
 # best_student = Student('Ruoy', 'Eman', 'your_gender')
 # best_student.courses_in_progress += ['Python']
 
@@ -91,3 +92,8 @@ Conchita.courses_in_progress.append("Python")
 print(Pedro.__dict__)
 print(Hulio.__dict__)
 print(Conchita.__dict__)
+
+Antony = Lecturer("Anton", "Ptushkin", "men")
+Antony.courses_attached.append("Python")
+Antony.courses_attached.append("English")
+print(Antony.__dict__)
