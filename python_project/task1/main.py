@@ -58,14 +58,36 @@ class Reviewer(Mentor):
             return 'Ошибка'
 
 
-best_student = Student('Ruoy', 'Eman', 'your_gender')
-best_student.courses_in_progress += ['Python']
+# best_student = Student('Ruoy', 'Eman', 'your_gender')
+# best_student.courses_in_progress += ['Python']
 
-cool_mentor = Mentor('Some', 'Buddy')
-cool_mentor.courses_attached += ['Python']
+# cool_mentor = Mentor('Some', 'Buddy')
+# cool_mentor.courses_attached += ['Python']
 
-cool_mentor.rate_hw(best_student, 'Python', 10)
-cool_mentor.rate_hw(best_student, 'Python', 10)
-cool_mentor.rate_hw(best_student, 'Python', 10)
+# cool_mentor.rate_hw(best_student, 'Python', 10)
+# cool_mentor.rate_hw(best_student, 'Python', 10)
+# cool_mentor.rate_hw(best_student, 'Python', 10)
 
-print(best_student.grades)
+#print(best_student.grades)
+
+Pedro = Student("Pedro", "Sanchez", "men")
+Pedro.courses_in_progress.append("Math")
+Pedro.courses_in_progress.append("IT")
+Pedro.courses_in_progress.append("English")
+Pedro.courses_in_progress.append("Russian")
+
+Hulio = Student("Hulio", "Iglesias", "men")
+Hulio.courses_in_progress.append("Python")
+Hulio.courses_in_progress.append("IT")
+Hulio.courses_in_progress.append("English")
+Hulio.courses_in_progress.append("Russian")
+Hulio.courses_in_progress.append("Spain")
+
+Conchita = Student("Conchita", "Bonita", "women")
+Conchita.courses_in_progress.append("Math")
+Conchita.courses_in_progress.append("Russian")
+Conchita.courses_in_progress.append("Python")
+
+print(Pedro.__dict__)
+print(Hulio.__dict__)
+print(Conchita.__dict__)
