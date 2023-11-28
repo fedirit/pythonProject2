@@ -16,7 +16,8 @@ class Student:
 
     def __str__(self):
         res = (f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за домашние задания: {self.average_grade}\n'
-               f'Курсы в процессе изучения: {self.courses_in_progress}\nЗавершенные курсы: {self.finished_courses}')
+               f'Курсы в процессе изучения: {", ".join(self.courses_in_progress)}\n'
+               f'Завершенные курсы: {", ".join(self.finished_courses)}')
         return res
 
     def __lt__(self, other):
@@ -122,25 +123,14 @@ def average_rate(group, course):
                 Mark_list += Lecturer_list[i].grades[course]
 
         if flag == True:
-            print(f'Курс {course} не преподается или у лекторов нет ни одной оценки')
+            print(f'Курс {course} не преподается у лекторов или нет ни одной оценки')
 
         else:
             average_mark = sum(Mark_list) / len(Mark_list)
             print(f'Средняя оценка лекторов за курс {course} составляет {average_mark}')
 
 
-# best_student = Student('Ruoy', 'Eman', 'your_gender')
-# best_student.courses_in_progress += ['Python']
-
-# cool_mentor = Mentor('Some', 'Buddy')
-# cool_mentor.courses_attached += ['Python']
-
-# cool_mentor.rate_hw(best_student, 'Python', 10)
-# cool_mentor.rate_hw(best_student, 'Python', 10)
-# cool_mentor.rate_hw(best_student, 'Python', 10)
-
-#print(best_student.grades)
-
+# создадим экземпляры класса Student
 Pedro = Student("Pedro", "Sanchez", "men")
 Pedro.courses_in_progress.append("Math")
 Pedro.courses_in_progress.append("IT")
@@ -150,7 +140,9 @@ Pedro.average_grade = 5.3 # в условии заданий не определ
 # и лекторов
 # создалось ощущуение, что в комментариях Вопросы и ответы, к ДЗ, вопросы студентов и ответы преподователей
 # содержится информация, относящаяся к формулировкам задания предыдущих версий, причем формулировки менялись
-# что определенно влияет на неоднозначное восприятие задания, не буду морочится установлю вручную
+# что определенно влияет на неоднозначное восприятие задания, поэтому не буду морочится установлю вручную
+Pedro.finished_courses.append("Java")
+Pedro.finished_courses.append("Spain")
 
 Hulio = Student("Hulio", "Iglesias", "men")
 Hulio.courses_in_progress.append("Python")
@@ -159,22 +151,34 @@ Hulio.courses_in_progress.append("English")
 Hulio.courses_in_progress.append("Russian")
 Hulio.courses_in_progress.append("Spain")
 Hulio.average_grade = 7.3
+Hulio.courses_attached.append("Python")
+Hulio.finished_courses.append("Java")
 
 Conchita = Student("Conchita", "Bonita", "women")
 Conchita.courses_in_progress.append("Math")
 Conchita.courses_in_progress.append("Russian")
 Conchita.courses_in_progress.append("Python")
 Conchita.average_grade = 8.8
+Conchita.courses_attached.append("Python")
+Conchita.courses_attached.append("Spain")
+Conchita.courses_attached.append("English")
+Conchita.finished_courses.append("Java")
 
 Antony = Lecturer("Anton", "Ptushkin", "men")
 Antony.courses_attached.append("Python")
 Antony.courses_attached.append("English")
 Antony.courses_attached.append("IT")
+Antony.average_grade = 9.8
+Antony.courses_in_progress.append("Python")
+Antony.courses_in_progress.append("English")
+Antony.courses_in_progress.append("IT")
 
 Helena = Lecturer("Helena", "Nikitina", "women")
 Helena.courses_attached.append("Python")
 Helena.courses_attached.append("Spain")
 Helena.courses_attached.append("English")
+Helena.average_grade = 2
+Helena.courses_in_progress.append("Python")
 
 Alexander = Reviewer("Alexander", "Bardin")
 Alexander.courses_attached.append("Python")
@@ -222,12 +226,17 @@ Igor.rate_hw(Conchita, "Math", 10)
 Igor.rate_hw(Conchita, "Math", 5)
 
 # Student оценивает Lecturer-ов
-Pedro.rate_hw_lecturer(Antony, "Python", 5)
-Pedro.rate_hw_lecturer(Antony, "Python", 6)
-Pedro.rate_hw_lecturer(Antony, "Python", 7)
-Pedro.rate_hw_lecturer(Antony, "Python", 8)
-Pedro.rate_hw_lecturer(Antony, "Python", 9)
+Conchita.rate_hw_lecturer(Antony, "Python", 5)
+Conchita.rate_hw_lecturer(Antony, "Python", 6)
+Conchita.rate_hw_lecturer(Antony, "Python", 7)
+Conchita.rate_hw_lecturer(Antony, "Python", 8)
+Conchita.rate_hw_lecturer(Antony, "Python", 9)
 
+Hulio.rate_hw_lecturer(Helena, "Python", 1)
+Hulio.rate_hw_lecturer(Helena, "Python", 2)
+Hulio.rate_hw_lecturer(Helena, "Python", 3)
+Hulio.rate_hw_lecturer(Helena, "Python", 2)
+Hulio.rate_hw_lecturer(Helena, "Python", 1)
 
 # определеляем средние оценки по каждому курсу студентов
 average_rate(Student, "Math")
@@ -240,7 +249,70 @@ average_rate(Student, "Spain")
 # определеляем средние оценки по каждому курсу лекторов
 average_rate(Lecturer, "Math")
 average_rate(Lecturer, "Python")
+average_rate(Lecturer, "IT")
+average_rate(Lecturer, "English")
+average_rate(Lecturer, "Russian")
+average_rate(Lecturer, "Spain")
 
+# поупражняемся с полиморфизмом, переопределим __str__ для каждого класса
+print('')
+
+print('// ============================================')
+print(Pedro.__str__())
+print('// ============================================')
+print('')
+
+print('// ============================================')
+print(Hulio.__str__())
+print('// ============================================')
+print('')
+
+print('// ============================================')
+print(Conchita.__str__())
+print('// ============================================')
+print('')
+
+print('// ============================================')
+print(Antony.__str__())
+print('// ============================================')
+print('')
+
+print('// ============================================')
+print(Helena.__str__())
+print('// ============================================')
+print('')
+
+print('// ============================================')
+print(Alexander.__str__())
+print('// ============================================')
+print('')
+
+print('// ============================================')
+print(Igor.__str__())
+print('// ============================================')
+print('')
+
+# посравниваем
+print('// ============================================')
+print('Pedro > Hulio', Pedro > Hulio)
+print('Pedro < Hulio', Pedro < Hulio)
+print('Pedro != Hulio', Pedro != Hulio)
+
+print('Pedro > Conchita', Pedro > Conchita)
+print('Pedro < Conchita', Pedro < Conchita)
+print('Pedro != Conchita', Pedro != Conchita)
+
+print('Hulio > Conchita', Hulio > Conchita)
+print('Hulio < Conchita', Hulio < Conchita)
+print('Hulio != Conchita', Hulio != Conchita)
+
+print('Antony > Helena', Antony > Helena)
+print('Antony < Helena', Antony < Helena)
+print('Antony != Helena', Antony != Helena)
+print('// ============================================')
+print('')
+
+# выводим __dict__ по каждому экземпляру класса, чтобы понимать обстановку
 print(Pedro.__dict__)
 print(Hulio.__dict__)
 print(Conchita.__dict__)
@@ -249,4 +321,5 @@ print(Helena.__dict__)
 print(Alexander.__dict__)
 print(Igor.__dict__)
 print(Students_list)
+print(Lecturer_list)
 
