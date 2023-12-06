@@ -85,6 +85,8 @@ def rewrite_file(path1=None, path2=None, path3=None):
             f_total.write(str(files_list[2][1]) + '\n')
             f_total.writelines(files_list[2][2])
 
+        print(f_total)
+
     return
 
 
